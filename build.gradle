@@ -1,0 +1,66 @@
+apply plugin: 'io.spring.dependency-management'
+
+allprojects {
+    group = 'pl.dk'
+	version = '0.0.1-SNAPSHOT'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE"
+    }
+}
+
+
+
+subprojects {
+    apply plugin: 'io.spring.dependency-management'
+
+	buildscript {
+		ext {
+			springBootVersion = '2.0.0.RELEASE'
+		}
+		repositories {
+			mavenCentral()
+			maven { url "https://repo.spring.io/snapshot" }
+			maven { url "https://repo.spring.io/milestone" }
+		}
+		dependencies {
+			classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+			classpath('org.junit.platform:junit-platform-gradle-plugin:1.0.1')
+		}
+	}
+
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:Finchley.M9")
+        }
+        dependencies {
+            dependency('org.junit.jupiter:junit-jupiter-api:5.1.0')
+            dependency('org.junit.jupiter:junit-jupiter-engine:5.1.0')
+            dependency('io.rest-assured:rest-assured:3.0.7')
+            dependency('com.github.tomakehurst:wiremock-standalone:2.15.0')
+            dependency('io.springfox:springfox-swagger2:2.8.0')
+            dependency('io.springfox:springfox-swagger-ui:2.8.0')
+            dependency('org.projectlombok:lombok:1.16.20')
+            dependency('org.json:json:20180130')
+        }
+    }
+
+}
+
+wrapper {
+    gradleVersion '4.6'
+}
