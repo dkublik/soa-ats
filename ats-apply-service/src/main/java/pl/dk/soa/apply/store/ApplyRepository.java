@@ -13,6 +13,7 @@ public class ApplyRepository {
 
     public void store(StoredApplication application) {
         applications.put(application.getId(), application);
+        application.stored();
     }
 
     public List<StoredApplication> findAll() {

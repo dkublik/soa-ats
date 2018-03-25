@@ -2,6 +2,7 @@ package pl.dk.soa.apply.store;
 
 import lombok.Getter;
 import lombok.Setter;
+import pl.dk.soa.apply.domainevent.DomainEvents;
 
 import java.time.Instant;
 
@@ -17,5 +18,9 @@ public class StoredApplication {
     private String messageToRecruiter;
     private String listingId;
     private Instant createdTime = now();
+
+    public void stored() {
+        DomainEvents.publish(new ApplicationStoredEvent(this));
+    }
 
 }
