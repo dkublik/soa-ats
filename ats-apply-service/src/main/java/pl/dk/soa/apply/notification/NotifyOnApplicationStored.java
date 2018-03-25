@@ -7,6 +7,7 @@ import org.springframework.web.client.RestTemplate;
 import pl.dk.soa.apply.store.ApplicationStoredEvent;
 
 import static pl.dk.soa.apply.config.Hosts.PREFILL_SERVICE;
+import static pl.dk.soa.apply.notification.JmsConfig.DESTINATION_NAME;
 
 @Service
 class NotifyOnApplicationStored {
@@ -24,7 +25,7 @@ class NotifyOnApplicationStored {
     @EventListener(classes = ApplicationStoredEvent.class)
     void onApplicationPersisted(ApplicationStoredEvent event) {
         Prefill prefillData = restTemplate.getForObject(PREFILL_ENDPOINT, Prefill.class, event.getSource().getCandidateId());
-        jmsTemplate.convertAndSend("applicationNotifications", new Notification(event.getSource(), prefillData));
+        jmsTemplate.convertAndSend(DESTINATION_NAME, new Notification(event.getSource(), prefillData));
     }
 
 }

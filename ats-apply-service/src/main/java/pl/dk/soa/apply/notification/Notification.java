@@ -1,11 +1,15 @@
 package pl.dk.soa.apply.notification;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.dk.soa.apply.store.StoredApplication;
 
 import java.time.Instant;
 
 @Getter
+@Setter
+@NoArgsConstructor
 public class Notification {
 
     private String applicationId;
