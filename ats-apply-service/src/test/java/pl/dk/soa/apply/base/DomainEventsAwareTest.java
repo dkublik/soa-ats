@@ -1,4 +1,4 @@
-package pl.dk.soa.base;
+package pl.dk.soa.apply.base;
 
 import lombok.Getter;
 import org.junit.jupiter.api.BeforeEach;

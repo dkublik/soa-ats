@@ -18,6 +18,7 @@ dependencies {
     testCompile('io.rest-assured:rest-assured')
     testCompile('org.mockito:mockito-core')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('com.github.tomakehurst:wiremock-standalone')
 
     testRuntime('org.junit.jupiter:junit-jupiter-engine')
 }

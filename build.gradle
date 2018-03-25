@@ -58,6 +58,7 @@ subprojects {
             dependency('org.projectlombok:lombok:1.16.20')
             dependency('org.json:json:20180130')
             dependency('org.apache.activemq:activemq-kahadb-store:5.15.3')
+            dependency('com.github.tomakehurst:wiremock-standalone:2.15.0')
         }
     }
 
