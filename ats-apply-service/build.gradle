@@ -13,6 +13,7 @@ dependencies {
 
     testCompile('org.junit.jupiter:junit-jupiter-api')
     testCompile('io.rest-assured:rest-assured')
+    testCompile('org.mockito:mockito-core')
 
     testRuntime('org.junit.jupiter:junit-jupiter-engine')
 }
