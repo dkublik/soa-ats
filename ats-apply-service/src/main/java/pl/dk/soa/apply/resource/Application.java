@@ -1,4 +1,4 @@
-package pl.dk.soa.apply.apply;
+package pl.dk.soa.apply.resource;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,11 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Application {
 
-    private String firstName;
-    private String lastName;
-    private String email;
+    private String candidateId;
     private String messageToRecruiter;
     private String listingId;
-    private String companyId;
 
 }

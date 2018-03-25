@@ -1,4 +1,4 @@
-package pl.dk.soa.apply.apply;
+package pl.dk.soa.apply.resource;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
