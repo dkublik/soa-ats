@@ -1,2 +1,2 @@
-include ':ats-apply-service', ':prefill-service'
+include ':ats-apply-service', ':prefill-service', ':application-verification-service', ':contracts-repository'
 

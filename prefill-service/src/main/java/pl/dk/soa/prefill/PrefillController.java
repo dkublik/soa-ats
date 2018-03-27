@@ -20,6 +20,7 @@ class PrefillController {
 
     @GetMapping("{candidateId}")
     @ApiOperation(value = "get prefill data")
+    @SuppressWarnings("unchecked")
     ResponseEntity<Prefill> getPrefillData(@PathVariable String candidateId) {
         return Optional.ofNullable(prefillData.get(candidateId.toLowerCase()))
                 .map(data -> new ResponseEntity(data, OK))
