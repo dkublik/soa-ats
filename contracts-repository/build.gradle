@@ -22,3 +22,15 @@ dependencies {
     testCompile('io.rest-assured:rest-assured')
     testCompile('org.springframework.cloud:spring-cloud-starter-contract-verifier')
 }
+
+tasks.create(type: Copy, name: 'copyMappings') {
+    from file("${contracts.stubsOutputDir}/META-INF/${project.group}/contracts-repository/${project.version}/mappings/")
+    into file("src/main/resources/mappings/")
+}
+
+copyMappings.dependsOn 'verifierStubsJar'
+build.dependsOn 'copyMappings'
+
+contracts {
+    testMode = 'Explicit'
+}

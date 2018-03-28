@@ -28,3 +28,5 @@ nbdist/
 activemq-data/
 
 out
+
+contracts-repository/src/main/resources/mappings/

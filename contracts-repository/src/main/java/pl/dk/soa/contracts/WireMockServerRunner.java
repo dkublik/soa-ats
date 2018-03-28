@@ -18,7 +18,7 @@ class WireMockServerRunner {
     void postContruct() {
         server = new WireMockServer(
                 options()
-                        .port(8181)
+                        .port(8183)
                         .fileSource(new ClasspathFileSource("."))
         );
         server.start();
