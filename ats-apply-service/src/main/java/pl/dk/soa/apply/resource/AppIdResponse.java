@@ -11,4 +11,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AppIdResponse {
     private String applicationId;
+    private String status;
 }
