@@ -22,7 +22,7 @@ class ApplyController {
         this.applyService = applyService;
     }
 
-    @PostMapping()
+    @PostMapping
     @ApiOperation(value = "apply for job")
     ResponseEntity<AppIdResponse> applyForJob(@RequestBody Application application) {
         StoredApplication storedApplication = applyService.apply(application);
