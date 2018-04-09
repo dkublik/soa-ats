@@ -5,13 +5,21 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
+import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import pl.dk.soa.Hosts;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
+@SpringBootTest
+@AutoConfigureStubRunner(ids = "pl.dk:prefill-service:+:stubs:8183", stubsMode = StubRunnerProperties.StubsMode.LOCAL)
+@ExtendWith(SpringExtension.class)
 class ApplyTest {
 
     @Test
