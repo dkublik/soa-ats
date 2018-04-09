@@ -24,3 +24,8 @@ dependencies {
     testCompile('io.rest-assured:rest-assured')
     testCompile('org.springframework.cloud:spring-cloud-starter-contract-verifier')
 }
+
+contracts {
+    testMode = 'Explicit'
+    baseClassForTests = 'pl.dk.soa.prefill.BaseTest'
+}
