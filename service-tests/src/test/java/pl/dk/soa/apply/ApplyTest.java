@@ -27,11 +27,11 @@ class ApplyTest {
                 );
 
         // when
-        Response response = request.when().get(Hosts.APPLY_HOST + "/v1/job-applications");
+        Response response = request.when().post(Hosts.APPLY_HOST + "/v1/job-applications");
 
         // then
         response.then()
-                .statusCode(HttpStatus.OK.value())
+                .statusCode(HttpStatus.ACCEPTED.value())
                 .contentType(ContentType.JSON)
                 .body("applicationId", notNullValue());
     }
