@@ -15,7 +15,7 @@ public class ApplyApplication {
 
 	public static final String PROFILE_PROD = "prod";
 
-    public static final String PROFILE_CONTRACTS = "contracts";
+    public static final String PROFILE_CONTRACT = "contract";
 
 	@Bean
 	RestTemplate restTemplate(RestTemplateBuilder builder) {
