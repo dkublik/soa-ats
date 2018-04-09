@@ -26,7 +26,7 @@ public class ApplyApplication {
 
 	public static void main(String[] args) {
 		SpringApplication springApplication = new SpringApplication(ApplyApplication.class);
-		springApplication.setAdditionalProfiles(PROFILE_CONTRACT);
+		springApplication.setAdditionalProfiles(PROFILE_PROD);
 		springApplication.run(args);
 	}
 }
