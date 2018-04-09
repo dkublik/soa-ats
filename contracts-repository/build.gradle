@@ -33,4 +33,5 @@ build.dependsOn 'copyMappings'
 
 contracts {
     testMode = 'Explicit'
+    baseClassForTests = 'pl.dk.soa.contracts.BaseTest'
 }
