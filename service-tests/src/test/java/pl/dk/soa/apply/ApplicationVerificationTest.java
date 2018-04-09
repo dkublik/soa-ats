@@ -14,46 +14,34 @@ class ApplicationVerificationTest {
 
     @Test
     public void shouldStoreApplicationWithRejectedStatus() throws Exception {
-        // given:
-        RequestSpecification request = RestAssured.given()
-                .contentType(ContentType.JSON)
-                .body(new JSONObject()
-                        .put("candidateId", "just_britney")
-                        .put("messageToRecruiter", "BAD_APPLICATION")
-                        .put("listingId", "1")
-                        .toString()
-                );
-        // when:
-        Response response = request.when()
-                .post("/v1/job-applications");
+         /* jezeli uderzamy do ats-apply-service ,
 
-        // then:
-        response.then()
-                .statusCode(HttpStatus.ACCEPTED.value())
-                .contentType(ContentType.JSON)
-                .body("status", Matchers.is("REJECTED"));
+         z wiadomoscia ktora w pole messageToRecruiter ma rowne "BAD_APPLICATION"
+         niezaleznie od innych pol
+
+         to dostaniemy odpowiedz
+
+         {
+            "status": "REJECTED"
+         }
+
+         */
     }
 
     @Test
     public void shouldStoreApplicationWithApproved() throws Exception {
-        // given:
-        RequestSpecification request = RestAssured.given()
-                .contentType(ContentType.JSON)
-                .body(new JSONObject()
-                        .put("candidateId", "just_britney")
-                        .put("messageToRecruiter", "any message")
-                        .put("listingId", "1")
-                        .toString()
-                );
-        // when:
-        Response response = request.when()
-                .post("/v1/job-applications");
+        /* jezeli uderzamy do ats-apply-service ,
 
-        // then:
-        response.then()
-                .statusCode(HttpStatus.ACCEPTED.value())
-                .contentType(ContentType.JSON)
-                .body("status", Matchers.is("ACCEPTED"));
+         z wiadomoscia ktora w pole messageToRecruiter ma rowne "any message"
+         niezaleznie od innych pol
+
+         to dostaniemy odpowiedz
+
+         {
+            "status": "ACCEPTED"
+         }
+
+         */
     }
 
 }

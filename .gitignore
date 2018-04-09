@@ -30,3 +30,5 @@ activemq-data/
 out
 
 contracts-repository/src/main/resources/mappings/
+
+.DS_Store
