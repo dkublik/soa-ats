@@ -13,6 +13,10 @@ import org.springframework.web.client.RestTemplate;
 @EnableScheduling
 public class ApplyApplication {
 
+	public static final String PROFILE_PROD = "prod";
+
+    public static final String PROFILE_CONTRACTS = "prod";
+
 	@Bean
 	RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder
@@ -21,6 +25,8 @@ public class ApplyApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApplyApplication.class, args);
+		SpringApplication springApplication = new SpringApplication(ApplyApplication.class);
+		springApplication.setAdditionalProfiles(PROFILE_PROD);
+		springApplication.run(args);
 	}
 }
