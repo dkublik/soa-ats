@@ -12,10 +12,10 @@ import static java.util.Comparator.comparing;
 @Service
 public class ApplyRepository {
 
-    @Autowired
+    @Autowired(required = false)
     private MqNotifier mqNotifier;
 
-    @Autowired
+    @Autowired(required = false)
     private ApplicationVerifier applicationVerifier;
 
     private Map<String, StoredApplication> applications = new HashMap<>();
