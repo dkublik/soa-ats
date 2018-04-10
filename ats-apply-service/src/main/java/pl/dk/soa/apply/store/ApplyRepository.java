@@ -1,5 +1,6 @@
 package pl.dk.soa.apply.store;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.dk.soa.apply.notification.MqNotifier;
 import pl.dk.soa.apply.verification.ApplicationVerifier;
@@ -11,17 +12,13 @@ import static java.util.Comparator.comparing;
 @Service
 public class ApplyRepository {
 
-    private final Optional<MqNotifier> mqNotifier;
+    @Autowired
+    private Optional<MqNotifier> mqNotifier;
 
-    private final Optional<ApplicationVerifier> applicationVerifier;
+    @Autowired
+    private Optional<ApplicationVerifier> applicationVerifier;
 
     private Map<String, StoredApplication> applications = new HashMap<>();
-
-    public ApplyRepository(Optional<MqNotifier> mqNotifier, Optional<ApplicationVerifier> applicationVerifier) {
-        this.mqNotifier = mqNotifier;
-        this.applicationVerifier = applicationVerifier;
-    }
-
 
     public void store(StoredApplication application) {
         applications.put(application.getId(), application);
