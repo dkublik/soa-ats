@@ -11,13 +11,13 @@ import static java.util.Comparator.comparing;
 @Service
 public class ApplyRepository {
 
-    private final MqNotifier mqNotifier;
+    private final Optional<MqNotifier> mqNotifier;
 
-    private final ApplicationVerifier applicationVerifier;
+    private final Optional<ApplicationVerifier> applicationVerifier;
 
     private Map<String, StoredApplication> applications = new HashMap<>();
 
-    public ApplyRepository(MqNotifier mqNotifier, ApplicationVerifier applicationVerifier) {
+    public ApplyRepository(Optional<MqNotifier> mqNotifier, Optional<ApplicationVerifier> applicationVerifier) {
         this.mqNotifier = mqNotifier;
         this.applicationVerifier = applicationVerifier;
     }
@@ -25,9 +25,8 @@ public class ApplyRepository {
 
     public void store(StoredApplication application) {
         applications.put(application.getId(), application);
-        mqNotifier.sendNotificationAboutStoredApp(application);
-        // TODO uncomment for verification test
-     //   applicationVerifier.verifyByExternalService(application);
+        mqNotifier.ifPresent(m -> m.sendNotificationAboutStoredApp(application));
+        applicationVerifier.ifPresent(v -> v.verifyByExternalService(application));
     }
 
     public List<StoredApplication> findAll() {

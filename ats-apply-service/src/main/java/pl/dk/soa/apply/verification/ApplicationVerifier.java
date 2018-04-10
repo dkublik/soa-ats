@@ -5,7 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.dk.soa.apply.store.StoredApplication;
 
-@Service
+// @Service
+// TODO uncomment for verification test
 public class ApplicationVerifier {
 
     private static String VERIFICATION_ENDPOINT = "/v1/verification";
