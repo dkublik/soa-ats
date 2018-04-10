@@ -13,17 +13,21 @@ import static java.util.Comparator.comparing;
 public class ApplyRepository {
 
     @Autowired
-    private Optional<MqNotifier> mqNotifier;
+    private MqNotifier mqNotifier;
 
     @Autowired
-    private Optional<ApplicationVerifier> applicationVerifier;
+    private ApplicationVerifier applicationVerifier;
 
     private Map<String, StoredApplication> applications = new HashMap<>();
 
     public void store(StoredApplication application) {
         applications.put(application.getId(), application);
-        mqNotifier.ifPresent(m -> m.sendNotificationAboutStoredApp(application));
-        applicationVerifier.ifPresent(v -> v.verifyByExternalService(application));
+        if (mqNotifier != null) {
+            mqNotifier.sendNotificationAboutStoredApp(application);
+        }
+        if (applicationVerifier != null) {
+            applicationVerifier.verifyByExternalService(application);
+        }
     }
 
     public List<StoredApplication> findAll() {
