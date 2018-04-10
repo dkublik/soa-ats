@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import pl.dk.soa.apply.store.ApplicationStoredEvent;
 import pl.dk.soa.apply.store.StoredApplication;
 
 import static org.junit.Assert.assertEquals;
@@ -18,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 class NotifyOnApplicationStoredTest {
 
     @Autowired
-    NotifyOnApplicationStored notifyOnApplicationStored;
+    MqNotifier notifyOnApplicationStored;
 
     @Autowired
     JmsTemplate jmsTemplate;
@@ -30,10 +29,9 @@ class NotifyOnApplicationStoredTest {
         application.setCandidateId("just_britney");
         application.setListingId("123");
         application.setMessageToRecruiter("eager to work for the whole winter!");
-        ApplicationStoredEvent applicationStoredEvent = new ApplicationStoredEvent(application);
 
         // when
-        notifyOnApplicationStored.onApplicationPersisted(applicationStoredEvent);
+        notifyOnApplicationStored.sendNotificationAboutStoredApp(application);
 
         // then
         Notification notification = (Notification) jmsTemplate.receiveAndConvert(JmsConfig.DESTINATION_NAME);

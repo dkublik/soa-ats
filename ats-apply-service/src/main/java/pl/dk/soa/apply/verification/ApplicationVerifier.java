@@ -1,35 +1,32 @@
 package pl.dk.soa.apply.verification;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import pl.dk.soa.apply.store.ApplicationStoredEvent;
+import pl.dk.soa.apply.store.StoredApplication;
 
-// @Service
-// TODO uncomment for verification test
-class VerifyApplicationStored {
+@Service
+public class ApplicationVerifier {
 
     private static String VERIFICATION_ENDPOINT = "/v1/verification";
 
     private final RestTemplate restTemplate;
     private String verificationService;
 
-    VerifyApplicationStored(RestTemplate restTemplate,
-                            @Value("${verification-service}") String verificationServiceHost) {
+    ApplicationVerifier(RestTemplate restTemplate,
+                        @Value("${verification-service}") String verificationServiceHost) {
         this.restTemplate = restTemplate;
         this.verificationService = verificationServiceHost + VERIFICATION_ENDPOINT;
     }
 
-    @EventListener(classes = ApplicationStoredEvent.class)
-    void onApplicationPersisted(ApplicationStoredEvent event) {
+    public void verifyByExternalService(StoredApplication application) {
         VerificationResult verificationResult =
-                restTemplate.postForObject(verificationService, new ApplicationToVerify(event.getSource()),
+                restTemplate.postForObject(verificationService, new ApplicationToVerify(application),
                         VerificationResult.class);
         if ("ACCEPTED".equals(verificationResult.getStatus())) {
-            event.getSource().accepted();
+            application.accepted();
         } else {
-            event.getSource().rejected();
+            application.rejected();
         }
     }
 
