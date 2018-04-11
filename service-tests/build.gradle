@@ -16,7 +16,6 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-activemq')
 	compile('io.springfox:springfox-swagger2')
 	compile('io.springfox:springfox-swagger-ui')
-    compile('org.projectlombok:lombok')
     compile('com.fasterxml.jackson.core:jackson-databind')
     compile('org.apache.activemq:activemq-kahadb-store')
 

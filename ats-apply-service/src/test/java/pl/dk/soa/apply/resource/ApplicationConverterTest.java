@@ -3,7 +3,8 @@ package pl.dk.soa.apply.resource;
 import org.junit.jupiter.api.Test;
 import pl.dk.soa.apply.store.StoredApplication;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ApplicationConverterTest {
 

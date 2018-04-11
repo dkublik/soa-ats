@@ -1,7 +1,6 @@
 package pl.dk.soa.apply.verification;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.dk.soa.apply.store.StoredApplication;
 

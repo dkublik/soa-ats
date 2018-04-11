@@ -19,7 +19,6 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-hateoas'
 	compile('io.springfox:springfox-swagger2')
 	compile('io.springfox:springfox-swagger-ui')
-    compile('org.projectlombok:lombok')
 
     testCompile('io.rest-assured:rest-assured')
     testCompile('org.springframework.cloud:spring-cloud-starter-contract-verifier')

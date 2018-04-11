@@ -1,14 +1,6 @@
 package pl.dk.soa.apply;
 
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-
-import io.restassured.RestAssured;
-import org.hamcrest.Matchers;
-import org.springframework.http.HttpStatus;
 
 class ApplicationVerificationTest {
 
