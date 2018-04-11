@@ -16,7 +16,6 @@ buildscript {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
-    compile('org.projectlombok:lombok')
     compile('com.github.tomakehurst:wiremock-standalone')
 
     testCompile('io.rest-assured:rest-assured')

@@ -8,7 +8,7 @@ import pl.dk.soa.apply.store.StoredApplication;
 
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.ACCEPTED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController

@@ -1,13 +1,7 @@
 package pl.dk.soa.apply.verification;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import pl.dk.soa.apply.store.StoredApplication;
 
-@Getter
-@Setter
-@NoArgsConstructor
 public class ApplicationToVerify {
 
     private String candidateId;
@@ -20,4 +14,30 @@ public class ApplicationToVerify {
         listingId = storedApplication.getListingId();
     }
 
+    public ApplicationToVerify() {
+    }
+
+    public String getCandidateId() {
+        return this.candidateId;
+    }
+
+    public String getMessageToRecruiter() {
+        return this.messageToRecruiter;
+    }
+
+    public String getListingId() {
+        return this.listingId;
+    }
+
+    public void setCandidateId(String candidateId) {
+        this.candidateId = candidateId;
+    }
+
+    public void setMessageToRecruiter(String messageToRecruiter) {
+        this.messageToRecruiter = messageToRecruiter;
+    }
+
+    public void setListingId(String listingId) {
+        this.listingId = listingId;
+    }
 }

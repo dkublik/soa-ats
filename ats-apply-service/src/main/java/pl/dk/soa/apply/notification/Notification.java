@@ -1,15 +1,9 @@
 package pl.dk.soa.apply.notification;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import pl.dk.soa.apply.store.StoredApplication;
 
 import java.time.Instant;
 
-@Getter
-@Setter
-@NoArgsConstructor
 public class Notification {
 
     private String applicationId;
@@ -32,4 +26,70 @@ public class Notification {
         email = additionalData.getEmail();
     }
 
+    public Notification() {
+    }
+
+    public String getApplicationId() {
+        return this.applicationId;
+    }
+
+    public String getCandidateId() {
+        return this.candidateId;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getMessageToRecruiter() {
+        return this.messageToRecruiter;
+    }
+
+    public String getListingId() {
+        return this.listingId;
+    }
+
+    public Instant getApplicationDate() {
+        return this.applicationDate;
+    }
+
+    public void setApplicationId(String applicationId) {
+        this.applicationId = applicationId;
+    }
+
+    public void setCandidateId(String candidateId) {
+        this.candidateId = candidateId;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setMessageToRecruiter(String messageToRecruiter) {
+        this.messageToRecruiter = messageToRecruiter;
+    }
+
+    public void setListingId(String listingId) {
+        this.listingId = listingId;
+    }
+
+    public void setApplicationDate(Instant applicationDate) {
+        this.applicationDate = applicationDate;
+    }
 }

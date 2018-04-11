@@ -1,12 +1,14 @@
 package pl.dk.soa.apply.verification;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class VerificationResult {
 
     private String status;
 
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
