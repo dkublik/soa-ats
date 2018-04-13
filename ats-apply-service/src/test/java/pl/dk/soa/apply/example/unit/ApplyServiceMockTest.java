@@ -1,4 +1,4 @@
-package pl.dk.soa.apply.resource;
+package pl.dk.soa.apply.example.unit;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -8,6 +8,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+import pl.dk.soa.apply.resource.Application;
+import pl.dk.soa.apply.resource.ApplicationConverter;
+import pl.dk.soa.apply.resource.ApplyService;
 import pl.dk.soa.apply.store.ApplyRepository;
 import pl.dk.soa.apply.store.StoredApplication;
 

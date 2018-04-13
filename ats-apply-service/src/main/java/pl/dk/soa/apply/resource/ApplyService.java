@@ -7,13 +7,13 @@ import pl.dk.soa.apply.store.StoredApplication;
 import java.util.List;
 
 @Service
-class ApplyService {
+public class ApplyService {
 
     private final ApplyRepository applyRepository;
 
     private final ApplicationConverter applicationConverter;
 
-    ApplyService(ApplyRepository applyRepository, ApplicationConverter applicationConverter) {
+    public ApplyService(ApplyRepository applyRepository, ApplicationConverter applicationConverter) {
         this.applyRepository = applyRepository;
         this.applicationConverter = applicationConverter;
     }

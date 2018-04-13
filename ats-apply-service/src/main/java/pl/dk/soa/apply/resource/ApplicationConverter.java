@@ -4,9 +4,9 @@ import org.springframework.stereotype.Service;
 import pl.dk.soa.apply.store.StoredApplication;
 
 @Service
-class ApplicationConverter {
+public class ApplicationConverter {
 
-    StoredApplication toStoredApplication(Application application) {
+    public StoredApplication toStoredApplication(Application application) {
         StoredApplication storedApplication = new StoredApplication();
         storedApplication.setCandidateId(application.getCandidateId());
         storedApplication.setListingId(application.getListingId());

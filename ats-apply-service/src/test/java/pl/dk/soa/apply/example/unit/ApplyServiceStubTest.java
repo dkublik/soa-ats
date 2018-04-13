@@ -1,6 +1,9 @@
-package pl.dk.soa.apply.resource;
+package pl.dk.soa.apply.example.unit;
 
 import org.junit.Test;
+import pl.dk.soa.apply.resource.Application;
+import pl.dk.soa.apply.resource.ApplicationConverter;
+import pl.dk.soa.apply.resource.ApplyService;
 import pl.dk.soa.apply.store.ApplyRepository;
 import pl.dk.soa.apply.store.StoredApplication;
 
