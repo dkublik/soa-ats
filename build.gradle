@@ -48,8 +48,7 @@ subprojects {
             mavenBom("org.springframework.cloud:spring-cloud-dependencies:Finchley.M9")
         }
         dependencies {
-            dependency('org.junit.jupiter:junit-jupiter-api:5.1.0')
-            dependency('org.junit.jupiter:junit-jupiter-engine:5.1.0')
+            dependency('junit:junit:4.12')
             dependency('io.rest-assured:rest-assured:3.0.7')
             dependency('org.mockito:mockito-core:2.16.0')
             dependency('com.github.tomakehurst:wiremock-standalone:2.15.0')

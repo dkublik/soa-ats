@@ -1,8 +1,8 @@
 package pl.dk.soa.apply;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class ApplicationVerificationTest {
+public class ApplicationVerificationTest {
 
     @Test
     public void shouldStoreApplicationWithRejectedStatus() throws Exception {

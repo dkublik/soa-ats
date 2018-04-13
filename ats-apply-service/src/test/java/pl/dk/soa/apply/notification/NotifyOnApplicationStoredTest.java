@@ -1,20 +1,20 @@
 package pl.dk.soa.apply.notification;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 import pl.dk.soa.apply.store.StoredApplication;
 
 import static org.junit.Assert.assertEquals;
 
 @SpringBootTest
-@ExtendWith(SpringExtension.class)
+@RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-class NotifyOnApplicationStoredTest {
+public class NotifyOnApplicationStoredTest {
 
     @Autowired
     MqNotifier notifyOnApplicationStored;
@@ -23,7 +23,7 @@ class NotifyOnApplicationStoredTest {
     JmsTemplate jmsTemplate;
 
     @Test
-    void shouldSendMqMessage() {
+    public void shouldSendMqMessage() {
         // given
         StoredApplication application = new StoredApplication();
         application.setCandidateId("just_britney");
