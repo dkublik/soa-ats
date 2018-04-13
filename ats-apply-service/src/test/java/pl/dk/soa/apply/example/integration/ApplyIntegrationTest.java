@@ -6,16 +6,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import pl.dk.soa.apply.notification.JmsConfig;
 import pl.dk.soa.apply.notification.Notification;
+import pl.dk.soa.apply.resource.AppIdResponse;
 import pl.dk.soa.apply.resource.Application;
 import pl.dk.soa.apply.resource.ApplyController;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * requires:
@@ -25,19 +25,16 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-public class NotifyOnApplicationStoredIntegrationTest {
+public class ApplyIntegrationTest {
 
     @Autowired
     ApplyController applyController;
-
-    @Autowired
-    JmsTemplate jmsTemplate;
 
     // @Rule
     // public WireMockRule wireMockRule = new WireMockRule(options().port(8081));
 
     @Test
-    public void shouldSendMqMessage() {
+    public void shouldAcceptApplication() {
         // given
         Application application = new Application();
         application.setCandidateId("just_britney");
@@ -45,12 +42,11 @@ public class NotifyOnApplicationStoredIntegrationTest {
         application.setMessageToRecruiter("eager to work for the whole winter!");
 
         // when
-        applyController.applyForJob(application);
+        AppIdResponse appIdResponse = applyController.applyForJob(application).getBody();
 
         // then
-        Notification notification = (Notification) jmsTemplate.receiveAndConvert(JmsConfig.DESTINATION_NAME);
-        assertEquals("just_britney", notification.getCandidateId());
-        assertEquals("just_britney@spears.pl", notification.getEmail());
+        assertNotNull(appIdResponse.getApplicationId());
+        assertEquals(appIdResponse.getStatus(), "NEW");
     }
 
 }
