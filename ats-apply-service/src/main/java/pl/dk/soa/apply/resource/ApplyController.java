@@ -18,7 +18,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping(path = "/v1/job-applications", produces = APPLICATION_JSON_VALUE)
 @Api(description = "job applications")
-class ApplyController {
+public class ApplyController {
 
     private ApplyService applyService;
 
@@ -28,7 +28,7 @@ class ApplyController {
 
     @PostMapping
     @ApiOperation(value = "apply for job")
-    ResponseEntity<AppIdResponse> applyForJob(@RequestBody Application application) {
+    public ResponseEntity<AppIdResponse> applyForJob(@RequestBody Application application) {
         StoredApplication storedApplication = applyService.apply(application);
         return new ResponseEntity<>(new AppIdResponse(storedApplication.getId(), storedApplication.getStatus().toString()),
                 ACCEPTED);
