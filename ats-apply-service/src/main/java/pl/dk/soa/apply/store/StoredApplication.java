@@ -4,7 +4,9 @@ import java.time.Instant;
 
 import static java.time.Instant.now;
 import static java.util.UUID.randomUUID;
-import static pl.dk.soa.apply.store.StoredApplication.Status.*;
+import static pl.dk.soa.apply.store.StoredApplication.Status.ACCEPTED;
+import static pl.dk.soa.apply.store.StoredApplication.Status.NEW;
+import static pl.dk.soa.apply.store.StoredApplication.Status.REJECTED;
 
 public class StoredApplication {
 
