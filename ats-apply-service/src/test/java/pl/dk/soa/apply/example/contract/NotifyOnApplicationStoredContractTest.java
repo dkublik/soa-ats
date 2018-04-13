@@ -1,11 +1,11 @@
-package pl.dk.soa.apply.example.integration;
+package pl.dk.soa.apply.example.contract;
 
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
+import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -14,27 +14,19 @@ import pl.dk.soa.apply.notification.Notification;
 import pl.dk.soa.apply.resource.Application;
 import pl.dk.soa.apply.resource.ApplyController;
 
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.junit.Assert.assertEquals;
 
-/**
- * requires:
- * undertest: ats-apply-service <- local
- * dependency: prefill-service: 8081
- */
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-public class NotifyOnApplicationStoredTest {
+@AutoConfigureStubRunner(ids = "pl.dk:prefill-service:+:stubs:8183", stubsMode = StubRunnerProperties.StubsMode.LOCAL)
+public class NotifyOnApplicationStoredContractTest {
 
     @Autowired
     ApplyController applyController;
 
     @Autowired
     JmsTemplate jmsTemplate;
-
-    // @Rule
-    // public WireMockRule wireMockRule = new WireMockRule(options().port(8081));
 
     @Test
     public void shouldSendMqMessage() {
