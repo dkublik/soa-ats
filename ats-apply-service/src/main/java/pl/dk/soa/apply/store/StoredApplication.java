@@ -10,6 +10,26 @@ import static pl.dk.soa.apply.store.StoredApplication.Status.REJECTED;
 
 public class StoredApplication {
 
+    public enum Status {
+        NEW,
+        ACCEPTED,
+        REJECTED
+    }
+
+    public enum Priority {
+        LOW,
+        MEDIUM,
+        HIGH
+    }
+
+    private String id = randomUUID().toString();
+    private Priority priority;
+    private String candidateId;
+    private String messageToRecruiter;
+    private String listingId;
+    private Instant createdTime = now();
+    private Status status = NEW;
+
     public String getId() {
         return this.id;
     }
@@ -58,19 +78,6 @@ public class StoredApplication {
         this.status = status;
     }
 
-    public enum Status {
-        NEW,
-        ACCEPTED,
-        REJECTED
-    }
-
-    private String id = randomUUID().toString();
-    private String candidateId;
-    private String messageToRecruiter;
-    private String listingId;
-    private Instant createdTime = now();
-    private Status status = NEW;
-
     public void accepted() {
         status = ACCEPTED;
     }
@@ -79,4 +86,11 @@ public class StoredApplication {
         status = REJECTED;
     }
 
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
 }
