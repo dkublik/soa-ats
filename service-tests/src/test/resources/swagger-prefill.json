@@ -1,0 +1,85 @@
+{
+  "swagger":"2.0",
+  "info":{
+    "description":"Api Documentation",
+    "version":"1.0",
+    "title":"Api Documentation",
+    "termsOfService":"urn:tos",
+    "contact":{
+
+    },
+    "license":{
+      "name":"Apache 2.0",
+      "url":"http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host":"localhost:8081",
+  "basePath":"/",
+  "tags":[
+    {
+      "name":"prefill-controller",
+      "description":"pre filling data"
+    }
+  ],
+  "paths":{
+    "/v1/prefill/for-candidate/{candidateId}":{
+      "get":{
+        "tags":[
+          "prefill-controller"
+        ],
+        "summary":"get prefill data",
+        "operationId":"getPrefillDataUsingGET",
+        "produces":[
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "name":"candidateId",
+            "in":"path",
+            "description":"candidateId",
+            "required":true,
+            "type":"string"
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"OK",
+            "schema":{
+              "$ref":"#/definitions/Prefill"
+            }
+          },
+          "401":{
+            "description":"Unauthorized"
+          },
+          "403":{
+            "description":"Forbidden"
+          },
+          "404":{
+            "description":"Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions":{
+    "Prefill":{
+      "type":"object",
+      "properties":{
+        "email":{
+          "type":"string"
+        },
+        "firstName":{
+          "type":"string"
+        },
+        "lastName":{
+          "type":"string"
+        },
+        "yearOfExperience":{
+          "type":"integer",
+          "format":"int32"
+        }
+      },
+      "title":"Prefill"
+    }
+  }
+}
