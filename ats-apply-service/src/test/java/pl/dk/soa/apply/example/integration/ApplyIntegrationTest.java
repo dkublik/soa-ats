@@ -29,8 +29,8 @@ public class ApplyIntegrationTest {
     @Autowired
     ApplyController applyController;
 
-    // @Rule
-    // public WireMockRule wireMockRule = new WireMockRule(options().port(8081));
+    @Rule
+    public WireMockRule wireMockRule = new WireMockRule(options().port(8081));
 
     @Test
     public void shouldAcceptApplication() {

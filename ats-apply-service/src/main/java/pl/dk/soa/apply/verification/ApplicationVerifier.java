@@ -1,11 +1,8 @@
 package pl.dk.soa.apply.verification;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 import pl.dk.soa.apply.store.StoredApplication;
 
-// @Service
-// TODO uncomment for verification test
 public class ApplicationVerifier {
 
     private static String VERIFICATION_ENDPOINT = "/v1/verification";
@@ -13,8 +10,7 @@ public class ApplicationVerifier {
     private final RestTemplate restTemplate;
     private String verificationService;
 
-    ApplicationVerifier(RestTemplate restTemplate,
-                        @Value("${verification-service}") String verificationServiceHost) {
+    ApplicationVerifier(RestTemplate restTemplate, String verificationServiceHost) {
         this.restTemplate = restTemplate;
         this.verificationService = verificationServiceHost + VERIFICATION_ENDPOINT;
     }

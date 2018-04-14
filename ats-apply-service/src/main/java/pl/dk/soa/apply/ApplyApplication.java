@@ -6,11 +6,9 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@EnableScheduling
 public class ApplyApplication {
 
 	public static final String PROFILE_PROD = "prod";
@@ -26,7 +24,7 @@ public class ApplyApplication {
 
 	public static void main(String[] args) {
 		SpringApplication springApplication = new SpringApplication(ApplyApplication.class);
-		springApplication.setAdditionalProfiles(PROFILE_PROD);
+	//	springApplication.setAdditionalProfiles(PROFILE_PROD);
 		springApplication.run(args);
 	}
 }
