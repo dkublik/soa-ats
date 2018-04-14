@@ -10,7 +10,8 @@ org.springframework.cloud.contract.spec.Contract.make {
         body([
                 "firstName": "Britney",
                 "lastName": "Spears",
-                "email": "just_britney@spears.pl"
+                "email": "just_britney@spears.pl",
+                "yearOfExperience": 1
         ])
         headers {
             contentType('application/json')
