@@ -1,14 +1,17 @@
 package pl.dk.soa.apply;
 
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.hamcrest.CoreMatchers;
 import org.json.JSONObject;
-import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
+import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
@@ -17,12 +20,11 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 /**
  *  must be up & running
  *  ats-apply-service/src/main/java/pl.dk.soa.apply.ApplyApplication http://localhost:8080
- *  ats-prefill-service/src/main/java/pl.dk.soa.prefill.PrefillApplication http://localhost:8081
  */
+@SpringBootTest
+@RunWith(SpringRunner.class)
+@AutoConfigureStubRunner(ids = "pl.dk:prefill-service:+:stubs:8081", stubsMode = StubRunnerProperties.StubsMode.LOCAL)
 public class ApplyTest {
-
-    @Rule
-    public WireMockRule wireMockRule = new WireMockRule(8081);
 
     @Test
     public void shouldApplySuccessfully() throws Exception {
