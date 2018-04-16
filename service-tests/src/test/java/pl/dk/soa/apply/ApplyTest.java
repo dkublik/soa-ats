@@ -19,24 +19,7 @@ public class ApplyTest {
 
     @Test
     public void shouldApplySuccessfully() throws Exception {
-        // given
-        RequestSpecification request = given()
-                .contentType(JSON)
-                .body(new JSONObject()
-                        .put("candidateId", "just_britney")
-                        .put("messageToRecruiter", "please hire me")
-                        .put("listingId", "123")
-                        .toString()
-                );
-
-        // when
-        Response response = request.when().post("http://localhost:8080/v1/job-applications");
-
-        // then
-        response.then()
-                .statusCode(HttpStatus.ACCEPTED.value())
-                .contentType(ContentType.JSON)
-                .body("applicationId", notNullValue());
+        
     }
 
 }
