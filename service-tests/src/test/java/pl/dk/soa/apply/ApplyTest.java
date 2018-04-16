@@ -1,5 +1,6 @@
 package pl.dk.soa.apply;
 
+import com.atlassian.oai.validator.restassured.SwaggerValidationFilter;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -47,21 +48,23 @@ public class ApplyTest {
                 .body("priority", CoreMatchers.is("HIGH"));
     }
 
-    /* zadanie:
-        w pliku /src/test/resources/mappings umiesc scenariusz wiremock -> getPrefill.json,
-        ktory dla uzytkownika z testu powyzej (just_britney)
-        zwroci conajmniej:
-        - adress email,
-        - wiecej niz 10 lat doswiadczenia
 
-        skladnie wiremock mozesz podejrzec w plikach, ktore byly przykladami w cwiczeniu z samochodem, np.
-        https://github.com/dkublik/soa-car-template/blob/master/mocks/src/main/resources/mappings/_gps-coordinates.json
+    SwaggerValidationFilter validationFilter = new SwaggerValidationFilter("swagger-prefill.json");
 
-        dokladne nazwy parametrow w odpowiedzi i adres mozesz znalezc w swagerze dla prefill-service
-        http://localhost:8081/swagger-ui.html
-        (do wejscia na url /swagger-ui.htm -> prefill-serwis musi byc odpalony,
-        do poprawnego dzialania testu - zastopowany)
-        */
+    @Test
+    public void prefillStubShouldBeCompatibleWithSwagger()  {
+        // given
+        RequestSpecification request = given()
+                .filter(validationFilter);
+
+        // when
+        Response response = request.when().get("http://localhost:8081/v1/prefill/for-candidate/just_britney");
+
+        // then
+        response.then()
+                .statusCode(200)
+                .contentType(ContentType.JSON);
+    }
 
 
 
