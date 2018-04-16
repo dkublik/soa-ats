@@ -1,6 +1,5 @@
 package pl.dk.soa.apply;
 
-import com.atlassian.oai.validator.restassured.SwaggerValidationFilter;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -47,25 +46,5 @@ public class ApplyTest {
                 .body("applicationId", notNullValue())
                 .body("priority", CoreMatchers.is("HIGH"));
     }
-
-
-    SwaggerValidationFilter validationFilter = new SwaggerValidationFilter("swagger-prefill.json");
-
-    @Test
-    public void prefillStubShouldBeCompatibleWithSwagger()  {
-        // given
-        RequestSpecification request = given()
-                .filter(validationFilter);
-
-        // when
-        Response response = request.when().get("http://localhost:8081/v1/prefill/for-candidate/just_britney");
-
-        // then
-        response.then()
-                .statusCode(200)
-                .contentType(ContentType.JSON);
-    }
-
-
 
 }
