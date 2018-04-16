@@ -3,6 +3,7 @@ package pl.dk.soa.apply;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.hamcrest.CoreMatchers;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
@@ -20,20 +21,25 @@ public class ApplyTest {
 
     @Test
     public void shouldApplySuccessfully() throws Exception {
-        // przepisz pl.dk.soa.apply.example.integration.ApplyIntegrationTest
-        // na test rest assured
+        // given
+        RequestSpecification request = given()
+                .contentType(JSON)
+                .body(new JSONObject()
+                        .put("candidateId", "just_britney")
+                        .put("messageToRecruiter", "please hire me")
+                        .put("listingId", "123")
+                        .toString()
+                );
 
-        // uwaga - test ten bedzie testem zewnetrznym w stosunku do aplikacji
-        // wiec w przeciwienstwie do ApplyIntegrationTest ApplyApplication bedzie musiala byc odpalona
-        // odpalona bedzie musiala byc tez jej zaleznosc: prefill-service
+        // when
+        Response response = request.when().post("http://localhost:8080/v1/job-applications");
 
-
-        // jesli potrzeba skladni testu testu rest assured - mozna ja znalezc w cwiczeniu o samochodach
-        // np. https://github.com/dkublik/soa-car-template/blob/master/mocks/src/test/java/contract/BooksContractVerifierTest.java
-
-        // dane niezbedne do wykonania requestu i sprawdzenie response mozna znalezc w swagerze:
-        // http://localhost:8080/swagger-ui.html
-
+        // then
+        response.then()
+                .statusCode(HttpStatus.ACCEPTED.value())
+                .contentType(ContentType.JSON)
+                .body("applicationId", notNullValue())
+                .body("priority", CoreMatchers.is("LOW"));
     }
 
 }
