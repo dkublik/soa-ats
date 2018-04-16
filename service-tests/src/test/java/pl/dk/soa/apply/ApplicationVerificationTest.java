@@ -3,7 +3,7 @@ package pl.dk.soa.apply;
 import org.junit.Test;
 
 /**
- *  ats=apply-service/src/main/java/pl.dk.soa.apply.ApplyApplication must be up & running
+ *  ats-apply-service/src/main/java/pl.dk.soa.apply.ApplyApplication must be up & running
  *  http://localhost:8080
  */
 public class ApplicationVerificationTest {
