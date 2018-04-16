@@ -1,51 +1,59 @@
 package pl.dk.soa.apply;
 
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import org.json.JSONObject;
+
+import io.restassured.RestAssured;
+import org.hamcrest.Matchers;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 
-/**
- *  ats-apply-service/src/main/java/pl.dk.soa.apply.ApplyApplication must be up & running
- *  http://localhost:8080
- */
 public class ApplicationVerificationTest {
-
-    /**
-     weryfikacja aplikacji nastepuje poprzez komunikacje z nieistniejacym jeszcze serwisem verification-service,
-         przez metodke POST,
-        na adres /v1/verification
-        jako body przekazywana bedzie aplikacja (nazwy pol bez zmian)
-        aby uruchomic funkcjonalnosc weryfikacji - zrestartuj serwis ats-apply-service
-    */
 
     @Test
     public void shouldStoreApplicationWithRejectedStatus() throws Exception {
-         /** jezeli zaaplikujemy do ats-apply-service,
+        // given:
+        RequestSpecification request = RestAssured.given()
+                .contentType(ContentType.JSON)
+                .body(new JSONObject()
+                        .put("candidateId", "just_britney")
+                        .put("messageToRecruiter", "BAD_APPLICATION")
+                        .put("listingId", "1")
+                        .toString()
+                );
+        // when:
+        Response response = request.when()
+                .post("/v1/job-applications");
 
-         z wiadomoscia ktora  pole messageToRecruiter ma rowne "BAD_APPLICATION"
-         niezaleznie od innych pol
-
-         to chcemy dostac odpowiedz
-
-         {
-            "status": "REJECTED"
-         },
-
-         */
+        // then:
+        response.then()
+                .statusCode(HttpStatus.ACCEPTED.value())
+                .contentType(ContentType.JSON)
+                .body("status", Matchers.is("REJECTED"));
     }
 
     @Test
     public void shouldStoreApplicationWithApproved() throws Exception {
-        /** jezeli zaaplikujemy do ats-apply-service ,
+        // given:
+        RequestSpecification request = RestAssured.given()
+                .contentType(ContentType.JSON)
+                .body(new JSONObject()
+                        .put("candidateId", "just_britney")
+                        .put("messageToRecruiter", "GOOD_APPLICATION")
+                        .put("listingId", "1")
+                        .toString()
+                );
+        // when:
+        Response response = request.when()
+                .post("/v1/job-applications");
 
-         z wiadomoscia ktora w pole messageToRecruiter ma rowne "GOOD_APPLICATION"
-         niezaleznie od innych pol
-
-         to dostaniemy odpowiedz
-
-         {
-            "status": "ACCEPTED"
-         }
-
-         */
+        // then:
+        response.then()
+                .statusCode(HttpStatus.ACCEPTED.value())
+                .contentType(ContentType.JSON)
+                .body("status", Matchers.is("ACCEPTED"));
     }
 
 }
